@@ -1,7 +1,7 @@
 var data="" ;
 var money=['dollar' ,'dinar','nis'];
 for(var i=0 ; i<money.length;i++){
-data+= ` <option > ${money[i]}</option>`
+data+= `<option > ${money[i]}</option>`
 }
 document.querySelector("select").innerHTML=data;
 //////
@@ -21,17 +21,19 @@ formreg.onsubmit = function (e) {
   var element = e.target.elements;
 
   var price = {
+    
     moneyType: element['amount'].value,
+    seltype: element['exchange'].value,
   };
   var exchangeRate;
-  switch (money) {
+  switch (price.seltype) {
     case 'dollar':
       exchangeRate = 0.27; // تحديد معدل الصرف للدولار
       break;
-    case 'dinar':
+    case'dinar':
       exchangeRate = 0.19; // تحديد معدل الصرف للدينار
       break;
-    case 'nis':
+    case'nis':
       exchangeRate = 1; // لا يتغير معدل الصرف للشيكل
       break;
     default:
@@ -39,6 +41,6 @@ formreg.onsubmit = function (e) {
       return;
   }
   // الحساب وعرض النتيجة
-  var result = price.mony * exchangeRate;
+  var result = price.moneyType * exchangeRate;
   para.textContent = `Converted amount: ${result} `;
 }
